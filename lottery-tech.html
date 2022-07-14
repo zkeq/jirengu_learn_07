@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        main {
+          max-width: 600px;
+          margin: 0 auto;
+          text-align: center;
+        }
+  
+        .panel {
+          border: 1px solid #ccc;
+          padding: 20px;
+          box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
+          font-size: 70px;
+        }
+  
+        .control {
+          margin-top: 60px;
+        }
+  
+        .control button {
+          display: none;
+        }
+  
+        .control button.show {
+          display: inline-block;
+        }
+  
+      </style>
+</head>
+<body>
+    <main>
+        <div class="panel">56</div>
+        <div class="control">
+          <button class="start show">开始抽奖</button>
+          <button class="end">结束抽奖</button>
+        </div>
+      </main>
+<script>
+    const Lottery = {
+        $panel : document.querySelector('.panel'),
+        $start : document.querySelector('.start'),
+        $end : document.querySelector('.end'),
+
+        init(){
+            this.bind()
+        },
+        
+        change(){
+            let random = Math.floor(Math.random()*100)
+            this.$panel.innerText = random
+        },
+
+        bind() {
+            let clock = null
+            this.$start.onclick = () => {
+                clock = setInterval(this.change.bind(this), 5)
+                this.$start.classList.remove('show')
+                this.$end.classList.add('show')
+            }
+
+            this.$end.onclick = () => {
+                clearInterval(clock)
+                this.slowStop()
+            }
+        },
+
+        slowStop() {
+            let interval = 5
+            clock.bind(this)()
+            function clock() {
+                console.log('clock')
+                setTimeout(() => {
+
+                    this.change()
+                    interval += 10
+                    console.log(interval)
+                    if (interval < 200){
+                        clock.bind(this)()
+                    } else {
+                        this.$end.classList.remove('show')
+                        this.$start.classList.add('show')
+                    }
+                }, interval)
+            }
+        }
+        
+    }
+
+    Lottery.init()
+</script>
+</body>
+</html>
