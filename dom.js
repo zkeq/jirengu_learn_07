@@ -3,9 +3,9 @@ window.dom = {
         return document.querySelectorAll(arguments[0]);
     },
     style(){
-        //  设置 div.style.color
+        //  获取 div.style.color
         if(arguments.length === 2){
-            arguments[0].style[arguments[1]] = arguments[2];
+            return arguments[0].style[arguments[1]];
         }
         //  设置 div.style.color = 'red'
         else if(arguments.length === 3){
