@@ -14,5 +14,8 @@
 // obj.fn.call(obj, p1) 
 
 const api1 = jQuery('.test') // 不返回元素们，返回 api 对象
-const api2 = api1.find('.child').addClass('red').addClass('blue').addClass('green')
-const oldApi = api2.end().addClass('yellow') 
+// const x = api1.find('.child')
+// // .addClass('red').addClass('blue').addClass('green')
+// // const oldApi = api2.end().addClass('yellow') 
+// x.each((div) => console.log(div))
+api1.children().print()
