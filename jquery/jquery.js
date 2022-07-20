@@ -54,3 +54,9 @@ window.jQuery = function(selectorOrArray){
     }
     return api;
 }
+
+// let api1 = jQuery('.test')  // elements: [.test1 , .test2]
+// let api2 = api1.find('.child')  //array: [.child1 , .child2] .oldApi:api1
+// console.log(api2)
+// api2.addClass('red')
+// api2.end().addClass('yellow')
